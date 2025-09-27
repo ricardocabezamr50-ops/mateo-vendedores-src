@@ -1,0 +1,27 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isSignedIn() { return request.auth != null; }
+    function isAdmin() {
+      return isSignedIn() &&
+        get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Visibles para usuarios logueados
+    match /fichas/{allPaths=**}     { allow read: if isSignedIn(); }
+    match /precios/{allPaths=**}    { allow read: if isSignedIn(); }
+    match /materiales/{allPaths=**} { allow read: if isSignedIn(); }
+
+    // Tarjetas: dueño ve su <uid>.pdf o admin ve todo; write solo admin
+    match /tarjetas/{file} {
+      allow read: if isSignedIn() &&
+        (file == request.auth.uid + '.pdf' || isAdmin());
+      allow write: if isAdmin();
+    }
+    // Listar toda la carpeta /tarjetas solo admin
+    match /tarjetas/{path=**} {
+      allow list: if isAdmin();
+    }
+  }
+}
