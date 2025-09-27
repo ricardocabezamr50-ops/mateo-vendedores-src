@@ -9,13 +9,15 @@
     "web": "npx expo start --web --port 8081",
     "start:localhost": "npx expo start --localhost -c",
     "start:tunnel": "npx expo start --tunnel -c",
-    "start:lan": "npx expo start --lan -c"
+    "start:lan": "npx expo start --lan -c",
+    "ios": "expo run:ios"
   },
   "dependencies": {
     "@expo/ngrok": "^4.1.3",
     "@expo/vector-icons": "15.0.2",
     "@react-native-async-storage/async-storage": "2.2.0",
     "expo": "54.0.10",
+    "expo-build-properties": "~1.0.9",
     "expo-constants": "18.0.9",
     "expo-file-system": "~19.0.15",
     "expo-linear-gradient": "~15.0.7",
