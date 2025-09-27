@@ -2,36 +2,16 @@
     "expo":  {
                  "name":  "Mateo Vendedores",
                  "slug":  "mateo-vendedores",
-                 "scheme":  "mateovendedores",
+                 "owner":  "riki2026",
                  "version":  "1.0.0",
                  "orientation":  "portrait",
-                 "icon":  "./assets/icon.png",
-                 "splash":  {
-                                "image":  "./assets/splash.png",
-                                "resizeMode":  "contain",
-                                "backgroundColor":  "#DA291C"
-                            },
-                 "userInterfaceStyle":  "automatic",
-                 "assetBundlePatterns":  [
-                                             "**/*"
-                                         ],
-                 "ios":  {
-                             "supportsTablet":  true,
-                             "bundleIdentifier":  "com.mateo.vendedores",
-                             "buildNumber":  "1"
-                         },
+                 "jsEngine":  "hermes",
+                 "platforms":  [
+                                   "android"
+                               ],
                  "android":  {
-                                 "package":  "com.mateo.vendedores",
-                                 "versionCode":  1,
-                                 "adaptiveIcon":  {
-                                                      "foregroundImage":  "./assets/adaptive-icon.png",
-                                                      "backgroundColor":  "#DA291C"
-                                                  }
+                                 "package":  "com.mateo.vendedores"
                              },
-                 "web":  {
-                             "bundler":  "metro",
-                             "favicon":  "./assets/favicon.png"
-                         },
                  "plugins":  [
                                  "expo-router",
                                  [
@@ -44,18 +24,6 @@
                                                      }
                                      }
                                  ]
-                             ],
-                 "experiments":  {
-                                     "typedRoutes":  true
-                                 },
-                 "extra":  {
-                               "router":  {
-
-                                          },
-                               "eas":  {
-                                           "projectId":  "385e0a87-f3e9-4ec2-9166-620ebd323507"
-                                       }
-                           },
-                 "owner":  "riki2026"
+                             ]
              }
 }
