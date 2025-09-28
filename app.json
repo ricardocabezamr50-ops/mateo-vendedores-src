@@ -1,29 +1,37 @@
 {
-    "expo":  {
-                 "name":  "Mateo Vendedores",
-                 "slug":  "mateo-vendedores",
-                 "owner":  "riki2026",
-                 "version":  "1.0.0",
-                 "orientation":  "portrait",
-                 "jsEngine":  "hermes",
-                 "platforms":  [
-                                   "android"
-                               ],
-                 "android":  {
-                                 "package":  "com.mateo.vendedores"
-                             },
-                 "plugins":  [
-                                 "expo-router",
-                                 [
-                                     "expo-build-properties",
-                                     {
-                                         "android":  {
-                                                         "targetSdkVersion":  36,
-                                                         "minSdkVersion":  24,
-                                                         "compileSdkVersion":  36
-                                                     }
-                                     }
-                                 ]
-                             ]
-             }
+  "expo": {
+    "name": "Mateo Vendedores",
+    "slug": "mateo-vendedores",
+    "owner": "riki2026",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "jsEngine": "hermes",
+    "platforms": [
+      "android"
+    ],
+    "android": {
+      "package": "com.mateo.vendedores",
+      "versionCode": 2
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "targetSdkVersion": 36,
+            "minSdkVersion": 24,
+            "compileSdkVersion": 36
+          }
+        }
+      ]
+    ],
+    "scheme": "mateovendedores",
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "385e0a87-f3e9-4ec2-9166-620ebd323507"
+      }
+    }
+  }
 }
