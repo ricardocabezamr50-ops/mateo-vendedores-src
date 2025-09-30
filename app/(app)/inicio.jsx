@@ -1,3 +1,4 @@
+import { safeGetDownloadURL, urlFrom } from '../../src/utils/storage';
 import { useEffect, useMemo, useState } from "react";
 import { View, Text, Pressable, TextInput, FlatList, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
@@ -48,7 +49,7 @@ export default function Inicio(){
     </View>
   );
 
-  // ⬇️ Usa router.push en lugar de deep link
+  // ÃƒÂ¢Ã‚Â¬Ã¢â‚¬Â¡ÃƒÂ¯Ã‚Â¸Ã‚Â Usa router.push en lugar de deep link
   const Quick = ({icon, label, to}) => (
     <Pressable onPress={()=>router.push(`/(app)/${to}`)} style={{ flex:1 }}>
       <View style={{ alignItems:"center", gap:8, padding:12 }}>
@@ -63,7 +64,7 @@ export default function Inicio(){
       <LinearGradient colors={[colors.brand, "#b71c14"]} start={{x:0,y:0}} end={{x:1,y:1}}
         style={{ paddingHorizontal:16, paddingTop:18, paddingBottom:22, borderBottomLeftRadius:18, borderBottomRightRadius:18 }}>
         <Text style={{ color:"#FFDAD6", marginBottom:4 }}>Bienvenido</Text>
-        <Text style={{ color:"#fff", fontSize:24, fontWeight:"800" }}>Hola, {first || "vendedor"} 👋</Text>
+        <Text style={{ color:"#fff", fontSize:24, fontWeight:"800" }}>Hola, {first || "vendedor"} ÃƒÂ°Ã…Â¸Ã¢â‚¬ËœÃ¢â‚¬Â¹</Text>
 
         <View style={{ marginTop:14, backgroundColor:"#fff", borderRadius:12, paddingHorizontal:12, paddingVertical:8 }}>
           <View style={{ flexDirection:"row", alignItems:"center" }}>
@@ -121,3 +122,4 @@ export default function Inicio(){
     </Screen>
   );
 }
+

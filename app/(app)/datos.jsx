@@ -1,3 +1,4 @@
+import { safeGetDownloadURL, urlFrom } from '../../src/utils/storage';
 import { useEffect, useMemo, useState } from "react";
 import { View, Text, Pressable, FlatList, Alert, ActivityIndicator } from "react-native";
 import * as Linking from "expo-linking";
@@ -45,7 +46,7 @@ export default function Datos(){
       // Mi PDF
       try {
         const myRef = ref(storage, `tarjetas/${user.uid}.pdf`);
-        const u = await getDownloadURL(myRef);
+        const u = await safeGetDownloadURL(myRef);
         setMineUrl(u);
       } catch {
         setMineUrl(null);
@@ -58,7 +59,7 @@ export default function Datos(){
           const { items } = await listAll(dir);
           const rows = await Promise.all(items.map(async it => ({
             name: it.name,
-            url: await getDownloadURL(it)
+            url: await safeGetDownloadURL(it)
           })));
           setAll(rows);
         }catch(e){
@@ -113,7 +114,7 @@ export default function Datos(){
               <PrimaryButton title="Ver mi tarjeta (PDF)" onPress={()=>openUrl(mineUrl)} />
               <Toolbar url={mineUrl} filename={`${user?.uid||"mi"}-tarjeta.pdf`} />
             </>
-          : <P>No hay tarjeta asignada todavía.</P>}
+          : <P>No hay tarjeta asignada todavÃƒÆ’Ã‚Â­a.</P>}
       </Card>
 
       {isAdmin && (
@@ -122,7 +123,7 @@ export default function Datos(){
           {busy ? (
             <View style={{ paddingVertical:10, alignItems:"center" }}>
               <ActivityIndicator />
-              <P style={{ marginTop:6 }}>Preparando archivo…</P>
+              <P style={{ marginTop:6 }}>Preparando archivoÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦</P>
             </View>
           ) : null}
           <FlatList
@@ -141,3 +142,4 @@ export default function Datos(){
     </Screen>
   );
 }
+

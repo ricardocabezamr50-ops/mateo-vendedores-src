@@ -1,33 +1,28 @@
-﻿# Node/Expo
+﻿# dependencias y caches
 node_modules/
 .expo/
 .expo-shared/
-.eas/
+.cache/
 dist/
 build/
-*.log
+android/app/build/
+ios/build/
 
-# Entornos
+# binarios
+*.apk
+*.aab
+*.ipa
+*.keystore
+*.jks
+*.p8
+*.p12
+*.pem
+*.key
+*.mobileprovision
+*.zip
+
+# secretos locales
 .env
 .env.*
-
-# Nativo: no versionar (EAS prebuild los genera)
-android/
-ios/
-.gradle/
-**/build/
-
-# Firmas y binarios
-keystores/
-*.jks
-*.keystore
-*.aab
-*.apk
-
-# SO
-.DS_Store
-Thumbs.db
-
-android_backup_*/
-
-android_backup_*/
+firebase/config.js
+credentials/

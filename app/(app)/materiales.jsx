@@ -1,3 +1,4 @@
+import { safeGetDownloadURL, urlFrom } from '../../src/utils/storage';
 import { useEffect, useMemo, useState, useCallback } from "react";
 import { View, Text, Pressable, TextInput, FlatList, RefreshControl, Image, Modal, ActivityIndicator } from "react-native";
 import * as FileSystem from "expo-file-system/legacy";
@@ -75,7 +76,7 @@ export default function Materiales(){
 
   const openOnline = async (doc)=>{
     const sref = ref(storage, doc.storagePath || `materiales/${doc.fileName || doc.title}`);
-    const url = doc.storageUrl || await getDownloadURL(sref);
+    const url = doc.storageUrl || await safeGetDownloadURL(sref);
     Linking.openURL(url);
   };
 
@@ -87,7 +88,7 @@ export default function Materiales(){
         const sref = ref(storage, doc.storagePath);
         const meta = await getMetadata(sref).catch(()=>null);
         metaName = meta?.name; metaType = meta?.contentType;
-        url = doc.storageUrl || await getDownloadURL(sref);
+        url = doc.storageUrl || await safeGetDownloadURL(sref);
       } else {
         url = doc.storageUrl;
       }
@@ -169,10 +170,11 @@ export default function Materiales(){
         <View style={{ flex:1, backgroundColor:"rgba(0,0,0,0.25)", alignItems:"center", justifyContent:"center" }}>
           <View style={{ backgroundColor:"#fff", padding:16, borderRadius:12, minWidth:220, alignItems:"center" }}>
             <ActivityIndicator size="large"/>
-            <Text style={{ marginTop:10, fontWeight:"600" }}>Preparando archivo…</Text>
+            <Text style={{ marginTop:10, fontWeight:"600" }}>Preparando archivoÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦</Text>
           </View>
         </View>
       </Modal>
     </Screen>
   );
 }
+

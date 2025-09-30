@@ -1,25 +1,33 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { onAuthStateChanged, signOut as fbSignOut } from "firebase/auth";
-import { router } from "expo-router";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../../firebase/config";
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut as fbSignOut,
+} from "firebase/auth";
 
-const Ctx = createContext({ user:null, loading:true, signOut:async()=>{} });
+const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [initializing, setInitializing] = useState(true);
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (u)=>{ setUser(u); setLoading(false); });
+    const unsub = onAuthStateChanged(auth, (u) => {
+      setUser(u ?? null);
+      setInitializing(false);
+    });
     return unsub;
   }, []);
 
-  const signOut = async () => {
-    try { await fbSignOut(auth); }
-    finally { router.replace("/(auth)/login"); }
-  };
+  const signIn  = (email, password) => signInWithEmailAndPassword(auth, email, password);
+  const signOut = () => fbSignOut(auth);
 
-  return <Ctx.Provider value={{ user, loading, signOut }}>{children}</Ctx.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, initializing, signIn, signOut }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
-export const useAuth = () => useContext(Ctx);
-export default AuthProvider;
+
+export const useAuth = () => useContext(AuthContext);
