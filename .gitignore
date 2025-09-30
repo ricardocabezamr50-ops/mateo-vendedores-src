@@ -26,3 +26,4 @@ ios/build/
 .env.*
 firebase/config.js
 credentials/
+firebase/config.js
